@@ -18,49 +18,38 @@ beforeEach(() => {
 });
 
 test('console.log call', () => {
-  return Promise.all([core.log('hello'), core.debug('world')])
-    .then(() => {
-      expect(console.log.mock.calls.length).toBe(2);
-      expect(console.log.mock.calls[0][0]).toBe('hello');
-      expect(console.log.mock.calls[1][0]).toBe('world');
-    });
+  transportConsole(LOG_LEVEL.DEBUG, ['log']);
+
+  expect(console.log).toBeCalled();
+  expect(console.log).toBeCalledWith('log');
 });
 
 test('console.info call', () => {
-  return core.info('hello')
-    .then(() => {
-      expect(console.info).toBeCalled();
-      expect(console.info).toBeCalledWith('hello');
-    });
+  transportConsole(LOG_LEVEL.INFO, ['info']);
+
+  expect(console.info).toBeCalled();
+  expect(console.info).toBeCalledWith('info');
 });
 
 test('console.error call', () => {
-  return Promise.all([core.error('hello'), core.exception('world')])
-    .then(() => {
-      expect(console.error.mock.calls.length).toBe(2);
-      expect(console.error.mock.calls[0][0]).toBe('hello');
-      expect(console.error.mock.calls[1][0]).toBe('world');
-    });
+  transportConsole(LOG_LEVEL.ERROR, ['error']);
+
+  expect(console.error).toBeCalled();
+  expect(console.error).toBeCalledWith('error');
 });
 
 test('console.warn call', () => {
-  return core.warn('hello')
-    .then(() => {
-      expect(console.warn).toBeCalled();
-      expect(console.warn).toBeCalledWith('hello');
-    });
+  transportConsole(LOG_LEVEL.WARN, ['warn']);
+
+  expect(console.warn).toBeCalled();
+  expect(console.warn).toBeCalledWith('warn');
 });
 
 test('unknown log level', () => {
-  core = coreLess.profile();
+  transportConsole(null, ['hello']);
 
-  core.addTransport((level, parts) => transportConsole(null, parts));
-
-  return core.warn('hello')
-    .then(() => {
-      expect(console.log).not.toBeCalled();
-      expect(console.info).not.toBeCalled();
-      expect(console.warn).not.toBeCalled();
-      expect(console.error).not.toBeCalled();
-    });
+  expect(console.log).not.toBeCalled();
+  expect(console.info).not.toBeCalled();
+  expect(console.warn).not.toBeCalled();
+  expect(console.error).not.toBeCalled();
 });
