@@ -1,11 +1,18 @@
-[![Build Status](https://img.shields.io/travis/likerRr/@consoless/transport-console/master.svg)](https://travis-ci.org/likerRr/@consoless/transport-console)
-[![Coverage](https://img.shields.io/codecov/c/github/likerRr/@consoless/transport-console/master.svg)](https://codecov.io/gh/likerRr/@consoless/transport-console)
-[![Dependencies](https://img.shields.io/david/likerRr/@consoless/transport-console.svg)](https://david-dm.org/likerRr/@consoless/transport-console)
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/likerRr/@consoless/transport-console)
+[![Build Status](https://img.shields.io/travis/consoless/transport-console/master.svg)](https://travis-ci.org/consoless/transport-console)
+[![Coverage](https://img.shields.io/codecov/c/github/consoless/transport-console/master.svg)](https://codecov.io/gh/consoless/transport-console)
+[![Dependencies](https://img.shields.io/david/consoless/transport-console.svg)](https://david-dm.org/consoless/transport-console)
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/consoless/transport-console)
 
 # Transport Console
 
-Description goes here.
+Transport for [@consoless/core](https://github.com/consoless/core) sends logs to console.
+
+Methods map:
+
+* `LOG_LEVEL.WARN` - `console.warn`
+* `LOG_LEVEL.ERROR` - `console.error`
+* `LOG_LEVEL.INFO` - `console.info`
+* `LOG_LEVEL.DEBUG` - `console.log`
 
 ## Install
 
@@ -15,23 +22,38 @@ $ npm install --save @consoless/transport-console
 
 ## Usage
 
-```javascript
-import transportConsole from '@consoless/transport-console';
+Include transport module:
 
-transportConsole('unicorns');
-//=> 'Hello, unicorns'
+```javascript
+// commonjs / node
+const transportConsole = require('@consoless/transport-console');
+
+// ES6
+import transportConsole from '@consoless/transport-console';
 ```
 
-## API
+```html
+<!-- Browsers -->
+<script src="https://unpkg.com/@consoless/transport-console/dist/bundle.umd.js"></script>
+<script>
+  // accessible as a `coreLessTransportConsole` global variable
+  console.log(coreLessTransportConsole);
+</script>
+```
 
-### transportConsole(name)
+Usage:
 
-#### name
+```javascript
+const transportConsole = require('@consoless/transport-console');
+const core = require('@consoless/core');
+const logger = core.profile();
 
-Type: `string`<br>
-Default: `false`
+logger.setLevel(core.LOG_LEVEL.DEBUG);
+logger.addTransport(transportConsole);
+logger.log('Hello, unicorns');
 
-The purpose is.
+// => 'Hello, unicorns'
+```
 
 ## License
 
