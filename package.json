@@ -1,6 +1,6 @@
 {
   "name": "@consoless/transport-console",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.1",
   "description": "Consoless' transport for loggin in browser's console",
   "license": "MIT",
   "repository": "consoless/transport-console",
@@ -37,7 +37,7 @@
     "consoless"
   ],
   "dependencies": {
-    "@consoless/core": "^0.0.1"
+    "@consoless/core": "^1.0.0-beta.1"
   },
   "devDependencies": {
     "babel-loader": "^6.4.0",
@@ -55,14 +55,20 @@
     "esnext": true,
     "semicolon": true,
     "space": 2,
-    "overrides": [{
-      "files": "test.js",
-      "plugins": [
-        "jest"
-      ],
-      "extends": ["plugin:jest/recommended"],
-      "envs": ["jest"]
-    }]
+    "overrides": [
+      {
+        "files": "test.js",
+        "plugins": [
+          "jest"
+        ],
+        "extends": [
+          "plugin:jest/recommended"
+        ],
+        "envs": [
+          "jest"
+        ]
+      }
+    ]
   },
   "jest": {
     "coverageReporters": [
