@@ -1,7 +1,7 @@
 {
   "name": "@consoless/transport-console",
   "version": "1.0.0-beta.1",
-  "description": "Consoless' transport for loggin in browser's console",
+  "description": "Sends logs to console",
   "license": "MIT",
   "repository": "consoless/transport-console",
   "author": "Alexey Lizurchik <al.lizurchik@gmail.com> (http://likerrr.ru)",
@@ -82,7 +82,6 @@
         "functions": 100,
         "branches": 100
       }
-    },
-    "testEnvironment": "jsdom"
+    }
   }
 }
