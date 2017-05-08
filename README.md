@@ -5,6 +5,8 @@
 
 # Transport Console
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/consoless/transport-console.svg)](https://greenkeeper.io/)
+
 Transport for [@consoless/core](https://github.com/consoless/core) sends logs to console.
 
 Methods map:
